@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes"> 
   <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
 
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.1.0.min.css" />
   <style type="text/css">
 body{ padding: 0; margin: 0; 
 /*activate the GPU for compositing each page */
@@ -37,7 +37,7 @@ body{ padding: 0; margin: 0;
   font-size: 48px !important;  
 }
   </style>
-  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="js/jquery-1.7.1.min.js"></script>
   <script type="text/javascript">
   Object.size = function(obj) {
     var size = 0, key;
@@ -51,8 +51,11 @@ body{ padding: 0; margin: 0;
   var edhLife = 40;
   var edhResetted = false;
   var timers = [];
-  var time = 2400;
+  var time = 1400;
   var lastID = 1;
+  
+  
+  var screenLock;
 
   $(function(){/* document ready */
     addPlayer();
@@ -68,7 +71,9 @@ body{ padding: 0; margin: 0;
       ajaxEnabled: false,
       activeBtnClass: ''
     });
-    
+    if (navigator){
+      screenLock = navigator.requestWakeLock('screen');
+    }
   });
   function removePlayer(){
     var player = players.pop();
@@ -82,7 +87,7 @@ body{ padding: 0; margin: 0;
     $("#content").append(player);
     var output = [];
     player.life = initLife;
-    for (var i=-10;i<80;i++){
+    for (var i=-10;i<121;i++){
       if (i == initLife){
         output.push('<option value="'+i+'" selected="selected">'+i+'</option>');
       }else{
@@ -152,7 +157,9 @@ body{ padding: 0; margin: 0;
     var that = this;
     timers[this.uniqueID].timer = setTimeout(function(){ref.html(""); timers[that.uniqueID].timer = false;}, time);
     var newValue = Math.round(val-timers[this.uniqueID].val);
-    if (newValue>0){newValue = "+"+newValue;}
+    if (newValue>0){
+	    newValue = "+"+newValue;
+	}
     if (timers[this.uniqueID].lastval != newValue){
       // only update bolding if we have to
 	    $(this).parent().parent().find('.dwl').html(newValue);
@@ -165,7 +172,7 @@ body{ padding: 0; margin: 0;
     }
   }
   </script>
-  <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+  <script src="js/jquery.mobile-1.1.0.min.js"></script>
 	<link href="css/mobiscroll-2.0.custom.min.css" rel="stylesheet" type="text/css" />
 	<script src="js/mobiscroll.core-2.0.js" type="text/javascript"></script>
 	<script src="js/mobiscroll.datetime-2.0.js" type="text/javascript"></script>

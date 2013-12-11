@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "name": "Magically",
+  "description": "MTG Life Counter",
+  "launch_path": "/index.html",
+  "fullscreen": "true",
+  "icons": {
+    "60": "/app-icons/magically_60.png",
+    "90": "/app-icons/magically_90.png",
+    "128": "/app-icons/magically_128.png",
+    "256": "/app-icons/magically_256.png"
+  },
+  "developer": {
+    "name": "Adam Bielinski",
+    "url": "http://abielinski.com"
+  },
+  "default_locale": "en",
+  "permissions": {
+    "power": {
+      "description": "Required to keep the screen on"
+    }
+  }
+}
